@@ -6,3 +6,8 @@ Input: "Type" of Cuisine
 Output: "Type" of Cuisine
 
 This test the class cuisine to return the name that we input.
+
+Test2
+
+Input: "Name" for restaurant
+Output: "Name" for restaurant

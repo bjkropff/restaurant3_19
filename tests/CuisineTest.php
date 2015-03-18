@@ -17,10 +17,10 @@
             //Arrange
             $type = "tuff";
             $id = null;
-            $test_Cuisine = new Cuisine($type, $id);
+            $test_cuisine = new Cuisine($type, $id);
 
             //Act
-            $result = $test_Cuisine->getType();
+            $result = $test_cuisine->getType();
 
             //Assert
             $this->assertEquals($type, $result);
@@ -31,14 +31,55 @@
             //Arrange
             $type = "tuff";
             $id = 1;
-            $test_Cuisine = new Cuisine($type, $id);
+            $test_cuisine = new Cuisine($type, $id);
 
             //Act
-            $result = $test_Cuisine->getId();
+            $result = $test_cuisine->getId();
 
             //Assert
             $this->assertEquals(1, $result);
+        }
+
+        function test_save()
+        {
+            //Arrange
+            $type = "tuff";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+
+            //Act
+            $result = Cuisine::getAll();
+
+            //Assert
+            $this->assertEquals($test_cuisine, $result[0]);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $type = "tuff";
+            $id = null;
+            $type2 = "twuff";
+            $id2 = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+            $test_cuisine2 = new Cuisine($type2, $id2);
+            $test_cuisine2->save();
+
+            //Act
+            $result = Cuisine::getAll();
+
+            //Assert
+            $this->assertEquals([$test_cuisine, $test_cuisine2], $result);
 
         }
+
+
+
+
+
+
+
     }
 ?>
