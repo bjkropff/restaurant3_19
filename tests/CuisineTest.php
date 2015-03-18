@@ -20,7 +20,7 @@
         function test_getType()
         {
             //Arrange
-            $type = "tuff";
+            $type = "foodtype";
             $id = null;
             $test_cuisine = new Cuisine($type, $id);
 
@@ -34,7 +34,7 @@
         function test_getId()
         {
             //Arrange
-            $type = "tuff";
+            $type = "foodtype";
             $id = 1;
             $test_cuisine = new Cuisine($type, $id);
 
@@ -45,10 +45,25 @@
             $this->assertEquals(1, $result);
         }
 
+        function test_setId()
+        {
+            //Arrange
+            $type = "foodtype";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+
+            //Act
+            $test_cuisine->setId(2);
+
+            //Assert
+            $result = $test_cuisine->getId();
+            $this->assertEquals(2, $result);
+        }
+
         function test_save()
         {
             //Arrange
-            $type = "tuff";
+            $type = "foodtype";
             $id = null;
             $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
@@ -63,9 +78,9 @@
         function test_getAll()
         {
             //Arrange
-            $type = "tuff";
+            $type = "foodtype";
             $id = null;
-            $type2 = "twuff";
+            $type2 = "foodtype2";
             $id2 = null;
             $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
@@ -83,9 +98,9 @@
         function test_deleteAll()
         {
             //Arrange
-            $type = "tuff";
+            $type = "foodtype";
             $id = null;
-            $name2 = "twuff";
+            $type2 = "foodtype2";
             $id2 = null;
             $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
@@ -93,6 +108,7 @@
             $test_cuisine2->save();
 
             //Act
+            Cuisine::deleteAll();
             $result = Cuisine::getAll();
 
             //Assert
@@ -100,12 +116,12 @@
 
         }
 
-        function test_find()
+        function test_findCuisine()
         {
             //Arrange
-            $type = "tuff";
+            $type = "foodtype";
             $id = 1;
-            $type2 = "twuff";
+            $type2 = "foodtype2";
             $id2 = 2;
             $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
@@ -113,27 +129,27 @@
             $test_cuisine2->save();
 
             //Act
-            $result = Cuisine::find($test_cuisine->getId());
+            $result = Cuisine::findCuisine($test_cuisine->getId());
 
             //Assert
             $this->assertEquals($test_cuisine, $result);
         }
 
-        function testGetRestaurants()
+        function test_getRestaurants()
         {
             //Arrange
-            $type = "tuff";
+            $type = "foodtype";
             $id = null;
             $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
 
-            $test_cuisine_id = $test_category->getId();
+            $test_cuisine_id = $test_cuisine->getId();
 
-            $name = "luclac";
+            $name = "resname";
             $test_restaurant = new Restaurant($name, $id, $test_cuisine_id);
             $test_restaurant->save();
 
-            $name2 = "killerburger";
+            $name2 = "resname2";
             $test_restaurant2 = new Restaurant($name2, $id, $test_cuisine_id);
             $test_restaurant2->save();
 

@@ -11,8 +11,8 @@
         function __construct($name, $id = null, $cuisine_id)
         {
             $this->name = $name;
-            $this->cuisine = $cuisine_id;
             $this->id = $id;
+            $this->cuisine_id = $cuisine_id;
         }
 
         function setName($new_name)
@@ -35,47 +35,47 @@
             $this->id = (int) $new_id;
         }
 
-        function setCuisineId($new_cuisine_id);
-        {
-            $this->cuisine_id = (int) $new_cuisine_id;
-        }
-
         function getCuisineId()
         {
             return $this->cuisine_id;
         }
 
+        function setCuisineId($new_cuisine_id)
+        {
+            $this->cuisine_id = (int) $new_cuisine_id;
+        }
+
         function save()
         {
-            $statement = $GLOBALS['DB']->query("INSERT INTO restaurants (name, cuisine_id) VALUES ('{$this->getName()}', {$this->getCuisineId()}) RETURN id;");
+            $statement = $GLOBALS['DB']->query("INSERT INTO restaurant (name, cuisine_id) VALUES ('{$this->getName()}', {$this->getCuisineId()}) RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
         }
 
         static function getAll()
         {
-            $returned_restaurants = $GLOBALS['DB']->query('SELECT * FROM restaurants;');
+            $returned_restaurants = $GLOBALS['DB']->query('SELECT * FROM restaurant;');
 
             $restaurants = array();
             foreach($returned_restaurants as $restaurant) {
-                $name = $restaurnt['name'];
+                $name = $restaurant['name'];
                 $id = $restaurant['id'];
                 $cuisine_id = $restaurant['cuisine_id'];
-                $new_restaurant = new Restaurant($name, $id, $cuisine_ud);
+                $new_restaurant = new Restaurant($name, $id, $cuisine_id);
                 array_push($restaurants, $new_restaurant);
             }
             return $restaurants;
         }
 
-        static function deleteAll();
+        static function deleteAll()
         {
-            $GLOBALS['DB']->exec('DELETE FROM restaurants *;');
+            $GLOBALS['DB']->exec('DELETE FROM restaurant *;');
         }
 
         static function findRestaurant($search_id)
         {
             $found_restaurant = null;
-            $restaurants = Restaurants::getAll();
+            $restaurants = Restaurant::getAll();
             foreach($restaurants as $restaurant) {
                 $restaurant_id = $restaurant->getId();
                 if ($restaurant_id == $search_id) {
