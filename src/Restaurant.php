@@ -51,5 +51,38 @@
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
         }
+
+        static function getAll()
+        {
+            $returned_restaurants = $GLOBALS['DB']->query('SELECT * FROM restaurants;');
+
+            $restaurants = array();
+            foreach($returned_restaurants as $restaurant) {
+                $name = $restaurnt['name'];
+                $id = $restaurant['id'];
+                $cuisine_id = $restaurant['cuisine_id'];
+                $new_restaurant = new Restaurant($name, $id, $cuisine_ud);
+                array_push($restaurants, $new_restaurant);
+            }
+            return $restaurants;
+        }
+
+        static function deleteAll();
+        {
+            $GLOBALS['DB']->exec('DELETE FROM restaurants *;');
+        }
+
+        static function findRestaurant($search_id)
+        {
+            $found_restaurant = null;
+            $restaurants = Restaurants::getAll();
+            foreach($restaurants as $restaurant) {
+                $restaurant_id = $restaurant->getId();
+                if ($restaurant_id == $search_id) {
+                    $found_restaurant = $restaurant;
+                }
+            }
+            return $found_restaurant;
+        }
     }
 ?>
