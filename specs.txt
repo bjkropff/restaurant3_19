@@ -1,0 +1,8 @@
+Specs
+
+Test1
+
+Input: "Type" of Cuisine
+Output: "Type" of Cuisine
+
+This test the class cuisine to return the name that we input.
