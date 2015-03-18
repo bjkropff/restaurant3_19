@@ -152,20 +152,20 @@
             //Arrange
             $type = "foodtype";
             $id = null;
-            $test_cusisine = new Cuisine($type, $id);
-            $test_cusisine->save();
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
 
             $name = "resname";
             $cuisine_id = $test_cuisine->getId();
             $test_restaurant = new Restaurant($name, $id, $cuisine_id);
             $test_restaurant->save();
-            
+
             $name2 = "resname2";
             $test_restaurant2 = new Restaurant($name2, $id, $cuisine_id);
             $test_restaurant2->save();
 
             //Act
-            $result = Restaurant::find($test_restaurant->getId());
+            $result = Restaurant::findRestaurant($test_restaurant->getId());
 
             //Assert
             $this->assertEquals($test_restaurant, $result);

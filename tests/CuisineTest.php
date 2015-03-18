@@ -157,7 +157,7 @@
             $result = $test_cuisine->getRestaurants();
 
             //Assert
-            $this->assertEquals(['test_restaurant, $test_restaurant2'], $result);
+            $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
         }
     }
 ?>
