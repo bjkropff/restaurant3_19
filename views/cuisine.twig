@@ -27,8 +27,9 @@
                 <br>
                 <button type='submit'>Adda Restaurant</button>
             </form>
+            <p><a href='/cuisine/{{ cuisine.getId }}/edit'>Edit this cuisine</a></p>
             <form action='/delete_res' method='post'>
-                <button type='submit'>Erase Restaurant</button>
+                <button type='submit' class='btn btn-danger btn-xs'>Erase Restaurant</button>
             </form>
             <p><a href='/'>Home</a></p>
         </center>
