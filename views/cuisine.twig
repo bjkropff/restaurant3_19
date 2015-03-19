@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <title>Foodstuff: Types of Cuisine</title>
+    </head>
+    <body>
+        <center>
+            <h1>{{ add.getType }}</h1>
+
+            {% if restaurant is not empty %}
+                <ul>
+                    {% for addedrestaurant in restaurant %}
+                        <p>{{ addedrestaurant.getName }}</p>
+                        <p>{{ addedrestaurant.getLocation }}</p>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <form action='/cuisine' method='post'>
+                <input id='cuisine_id' name='cuisine_id' type='hidden' value='{{ cuisine.getId() }}'>
+                <label for='name'>Name</label>
+                <input id='name' name='name' type='text'>
+                <br>
+                <label for='location'>Location</label>
+                <input id='location' name='location' type='text'>
+
+                <br>
+                <button type='submit'>Adda Restaurant</button>
+            </form>
+            <form action='/delete_res' method='post'>
+                <button type='submit'>Erase Restaurant</button>
+            </form>
+            <p><a href='/'>Home</a></p>
+        </center>
+    </body>
+</html>

@@ -1,6 +1,6 @@
 <?php
 
-    $DB = new PDO('pgsql:host=localhost;dbname=food_test');
+    $DB = new PDO('pgsql:host=localhost;dbname=food');
 
     class Cuisine
     {
@@ -77,9 +77,10 @@
             $restaurants = array();
             foreach($returned_restaurants as $restaurant) {
                 $name = $restaurant['name'];
+                $location = $restaurant['location'];
                 $id = $restaurant['id'];
                 $cuisine_id = $restaurant['cuisine_id'];
-                $new_restaurant = new Restaurant($name, $id, $cuisine_id);
+                $new_restaurant = new Restaurant($name, $location, $id, $cuisine_id);
                 array_push($restaurants, $new_restaurant);
             }
             return $restaurants;

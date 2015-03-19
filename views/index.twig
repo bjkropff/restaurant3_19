@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <title>Your Very Own FoodStuff</title>
+    </head>
+    <body>
+        <center>
+        <h1>Your FoodStuff styles of <i>Cuisine</i></h1>
+        <p>Create a <i>Cuisine</i> type</p>
+
+        <form action='/index' method='post'>
+            <label for='type'>Cuisine</label>
+            <input id='type' name='type' type='text'>
+
+            <button type='submit' class='btn btn-success btn-xs'>Get Cuisined</button>
+        </form>
+
+            {% if cuisine is not empty %}
+                <p>Here are all your styels of food like things</p>
+                    {% for add in cuisine %}
+                        <p><a href='/cuisine/{{ add.getId }}'>{{ add.getType }}</a></p>
+                    {% endfor %}
+                {% else %}
+                    <p>You have add no types to your list yet.</p>
+            {% endif %}
+            <form action='/delete_types' method='post'>
+                <button type='submit' class='btn btn-danger btn-xs'>Erase Types</button>
+            </form>
+        </center>
+    </body>
+</html>

@@ -1,13 +1,16 @@
-Specs
+Cynthia and I played with saving our database schema + data before we left class and were able to clone our repository at home and bring it back. Here’s how we did it.
 
-Test1
+at the command prompt, in your project folder, type: pg_dump [database name] -f [filename.sql]
+in our case this was: pg_dump to_do -f to_do.sql
 
-Input: "Type" of Cuisine
-Output: "Type" of Cuisine
+now add the file to your git repository and later when you clone or pull it again, you just need to import it.
+run psql from your project folder. Create the database name that you want to import the database into:
+CREATE DATABASE [database name];
+in our case:
+CREATE DATABASE to_do;
+then switch over to it:
+\c to_do
+then import it:
+\i to_do.sql
 
-This test the class cuisine to return the name that we input.
-
-Test2
-
-Input: "Name" for restaurant
-Output: "Name" for restaurant
+You should now have the database with all the data you left off with.
