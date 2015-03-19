@@ -95,7 +95,7 @@
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM cuisine WHERE id = {$this->getId()};");
-            $GLOBALS['DB']->exec("DELETE FROM restaurant WHERE cuisine = {$this->getId()}");
+            $GLOBALS['DB']->exec("DELETE FROM restaurant WHERE cuisine_id = {$this->getId()}");
         }
 
     }

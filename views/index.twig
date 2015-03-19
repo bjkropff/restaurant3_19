@@ -4,27 +4,48 @@
         <title>Your Very Own FoodStuff</title>
     </head>
     <body>
+        <div class="container">
         <center>
         <h1>Your FoodStuff Styles</h1>
         <p>Create a Food Category</p>
 
-        <form action='/index' method='post'>
+        <form action='/index' method='post' class='form-inline'>
             <label for='type'></label>
-            <input id='type' name='type' type='text'>
+            <input id='type' name='type' type='text' class='form-control'>
 
             <button type='submit' class='btn btn-success btn-xs'>Get Cuisined</button>
         </form>
 
-            {% if cuisine is not empty %}
-                <h2
-                    {% for add in cuisine %}
-                    <form action='/cuisine/{{ add.getId }}' method='get'>
-                        <p><button type="submit" class="btn btn-primary btn-sm">{{ add.getType }}</button></p>
-                    </form>
-                    {% endfor %}
+    {% if cuisine is not empty %}
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>Style</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for add in cuisine %}
+                <tr>
+                    <td>
+                <form action='/cuisine/{{ add.getId }}' method='get'>
+                    <p><button type="submit" class="btn btn-primary btn-large">{{ add.getType }}</button></p>
+                </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        <div class="col-md-4"></div>
                 {% else %}
-                    <p>You have add no types to your list yet.</p>
-            {% endif %}
+                <p>You have add no types to your list yet.</p>
+    {% endif %}
+            <form action='/delete_types' method='post'>
+               <button type='submit' class='btn btn-danger btn-xs'>Erase Types</button>
+           </form>
         </center>
+    </div>
     </body>
 </html>
