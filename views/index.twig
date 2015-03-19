@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -6,27 +5,26 @@
     </head>
     <body>
         <center>
-        <h1>Your FoodStuff styles of <i>Cuisine</i></h1>
-        <p>Create a <i>Cuisine</i> type</p>
+        <h1>Your FoodStuff Styles</h1>
+        <p>Create a Food Category</p>
 
         <form action='/index' method='post'>
-            <label for='type'>Cuisine</label>
+            <label for='type'></label>
             <input id='type' name='type' type='text'>
 
             <button type='submit' class='btn btn-success btn-xs'>Get Cuisined</button>
         </form>
 
             {% if cuisine is not empty %}
-                <p>Here are all your styles of food like things</p>
+                <h2
                     {% for add in cuisine %}
-                        <p><a href='/cuisine/{{ add.getId }}'>{{ add.getType }}</a></p>
+                    <form action='/cuisine/{{ add.getId }}' method='get'>
+                        <p><button type="submit" class="btn btn-primary btn-sm">{{ add.getType }}</button></p>
+                    </form>
                     {% endfor %}
                 {% else %}
                     <p>You have add no types to your list yet.</p>
             {% endif %}
-            <form action='/delete_types' method='post'>
-                <button type='submit' class='btn btn-danger btn-xs'>Erase Types</button>
-            </form>
         </center>
     </body>
 </html>

@@ -5,33 +5,40 @@
     </head>
     <body>
         <center>
+    <h1>{{ cuisine.getType }}<small>Cuisine</small></h1>
 
-                <h1>{{ cuisine.getType }}</h1>
+    <form action='/cuisine' method='post'>
+        <input id='cuisine_id' name='cuisine_id' type='hidden' value='{{ cuisine.getId() }}'>
+        <label for='name'>Name</label>
+        <input id='name' name='name' type='text'>
+        <br>
+        <label for='location'>Location</label>
+        <input id='location' name='location' type='text'>
+        <br>
+        <br>
+        <button type='submit' class='btn btn-success'>Add a Restaurant</button>
+    </form>
 
-            {% if restaurant is not empty %}
-                <ul>
+        {% if restaurant is not empty %}
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Restaurant Name</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
                     {% for addedrestaurant in restaurant %}
-                        <h4>{{ addedrestaurant.getName }}</h4>
-                        <p>{{ addedrestaurant.getLocation }}</p>
+                <tr>
+                  <td>{{ addedrestaurant.getName }}</td>
+                  <td>{{ addedrestaurant.getLocation }}</td>
+                </tr>
                     {% endfor %}
-                </ul>
-            {% endif %}
+              </tbody>
+            </table>
+        {% endif %}
 
-            <form action='/cuisine' method='post'>
-                <input id='cuisine_id' name='cuisine_id' type='hidden' value='{{ cuisine.getId() }}'>
-                <label for='name'>Name</label>
-                <input id='name' name='name' type='text'>
-                <br>
-                <label for='location'>Location</label>
-                <input id='location' name='location' type='text'>
-
-                <br>
-                <button type='submit'>Adda Restaurant</button>
-            </form>
-            <p><a href='/cuisine/{{ cuisine.getId }}/edit'>Edit this cuisine</a></p>
-            <form action='/delete_res' method='post'>
-                <button type='submit' class='btn btn-danger btn-xs'>Erase Restaurant</button>
-            </form>
+            <p><button type='submit' class='btn btn-warning'><a href='/cuisine/{{ cuisine.getId }}/edit'>Edit this cuisine</a></button></p>
             <p><a href='/'>Home</a></p>
         </center>
     </body>
