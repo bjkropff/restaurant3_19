@@ -45,7 +45,7 @@
 
     $app->post('/delete_res', function() use ($app) {
         Restaurant::deleteAll();
-        return $app['twig']->render('cuisine.twig', array('cuisine' => Cuisine::getAll()));
+        return $app['twig']->render('cuisine.twig');
     });
 
     $app->get('/cuisine/{id}/edit', function($id) use ($app) {
