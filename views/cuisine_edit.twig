@@ -3,15 +3,24 @@
         <title>Edit Page</title>
     </head>
     <body>
-        <h1>Update the {{ cuisine.getType }} cuisine</h1>
+        <center>
+            <h1>Update the {{ cuisine.getType }} cuisine</h1>
 
-        <form action="/cuisine/{{ cuisine.getId }}" method='post'>
-            <input name='_method' type='hidden' value='patch'>
+            <form action="/cuisine/{{ cuisine.getId }}" method='post'>
+                <input name='_method' type='hidden' value='patch'>
 
-            <label for='type'>Rename your cuisine:</label>
-            <input id='type' name='type' type='text'>
+                <label for='type'>Rename your cuisine:</label>
+                <input id='type' name='type' type='text'>
 
-            <button type='submit'>Update</button>
-        </form>
+                <button type='submit'>Update</button>
+            </form>
+
+            <form action='/cuisine/{{ cuisine.getId }}' method="post">
+                <input type="hidden" name="_method" value="delete">
+
+                <button type='submit'>Delete this cuisine</button>
+
+            </form>
+        </center>
     </body>
 </html>

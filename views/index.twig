@@ -17,7 +17,7 @@
         </form>
 
             {% if cuisine is not empty %}
-                <p>Here are all your styels of food like things</p>
+                <p>Here are all your styles of food like things</p>
                     {% for add in cuisine %}
                         <p><a href='/cuisine/{{ add.getId }}'>{{ add.getType }}</a></p>
                     {% endfor %}

@@ -5,12 +5,13 @@
     </head>
     <body>
         <center>
-                <h1>{{ add1.getType }}</h1>
+
+                <h1>{{ cuisine.getType }}</h1>
 
             {% if restaurant is not empty %}
                 <ul>
                     {% for addedrestaurant in restaurant %}
-                        <p>{{ addedrestaurant.getName }}</p>
+                        <h4>{{ addedrestaurant.getName }}</h4>
                         <p>{{ addedrestaurant.getLocation }}</p>
                     {% endfor %}
                 </ul>
